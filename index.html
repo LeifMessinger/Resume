@@ -7,6 +7,11 @@
 		<meta name="keywords" content="keywords" />
 		<link rel="stylesheet" href="./FlexML/FlexML.css" type="text/css" />
 		<style type="text/css">
+			@media print {
+				body {
+					overflow: visible;
+				}
+			}
 			#flexHeader {
 				/* It only wants 10% of the height of the page. Nothing more, nothing less. */
 				flex: 0 0 5%;
@@ -14,7 +19,16 @@
 			#flexWindow {
 				/* It's fine with growing or shrinking. */
 				flex: 1 1;
-				overflow: auto;
+			}
+			@media print {
+				#flexWindow {
+					overflow: visible;
+				}				
+			}
+			@media screen {
+				#flexWindow {
+					overflow: auto;
+				}				
 			}
 			#flexFooter {
 				/* It only wants 10% of the height of the page. Nothing more, nothing less. */
@@ -198,7 +212,7 @@
 		<div id="flexHeader">
 			<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label> <br />
 		</div>
-		<div class="flexRow" grow style="overflow: auto;">
+		<div id="flexWindow" class="flexRow">
 			<div id="DataBody"> </div>
 			<div id="ComplexityStack" class="flexSticky"><div></div></div>
 		</div>
