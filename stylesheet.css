@@ -17,6 +17,34 @@
 	}
 }
 
+@media print {
+	body {
+		overflow: visible;
+	}
+}
+#flexHeader {
+	/* It only wants 10% of the height of the page. Nothing more, nothing less. */
+	flex: 0 0 5%;
+}
+#flexWindow {
+	/* It's fine with growing or shrinking. */
+	flex: 1 1;
+}
+@media print {
+	#flexWindow {
+		overflow: visible;
+	}
+}
+@media screen {
+	#flexWindow {
+		overflow: auto;
+	}
+}
+#flexFooter {
+	/* It only wants 10% of the height of the page. Nothing more, nothing less. */
+	flex: 0 0 5%;
+}
+
 .colorOne {
 	background-color: color-mix(in var(--mix-color-mode), rgb(30, 144, 255) var(--fake-opacity), var(--fake-background));
 }
