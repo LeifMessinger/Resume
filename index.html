@@ -5,10 +5,40 @@
 		<meta name="description" content="description"/>
 		<meta name="author" content="author" />
 		<meta name="keywords" content="keywords" />
+		<link rel="stylesheet" href="./FlexML/FlexML.css" type="text/css" />
+		<style type="text/css">
+			@media print {
+				body {
+					overflow: visible;
+				}
+			}
+			#flexHeader {
+				/* It only wants 10% of the height of the page. Nothing more, nothing less. */
+				flex: 0 0 5%;
+			}
+			#flexWindow {
+				/* It's fine with growing or shrinking. */
+				flex: 1 1;
+			}
+			@media print {
+				#flexWindow {
+					overflow: visible;
+				}				
+			}
+			@media screen {
+				#flexWindow {
+					overflow: auto;
+				}				
+			}
+			#flexFooter {
+				/* It only wants 10% of the height of the page. Nothing more, nothing less. */
+				flex: 0 0 5%;
+			}
+		</style>
 		<link rel="stylesheet" href="./stylesheet.css" type="text/css" />
 		<script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 	</head>
-	<body>
+	<body class="flexColumn">
 		<script type="text/javascript">
 			const hardcodedURL = "resume.html";
 
@@ -179,12 +209,16 @@
 				window.onload = autorun;
 			}
 		</script>
-		<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label> <br />
-		<div class="flexRow">
-			<div id="DataBody"> </div>
-			<div id="ComplexityStack"><div></div></div>
+		<div id="flexHeader">
+			<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label> <br />
 		</div>
-		<div>Contact info: leifmessinger@gmail.com LeifMessinger@my.unt.edu</div>
+		<div id="flexWindow" class="flexRow">
+			<div id="DataBody"> </div>
+			<div id="ComplexityStack" class="flexSticky"><div></div></div>
+		</div>
+		<div id="flexFooter">
+			<div>Contact info: leifmessinger@gmail.com LeifMessinger@my.unt.edu</div>
+		</div>
 		<noscript>
 			FYI, you have javascript disabled, so this page won't work. :(
 		</noscript>
