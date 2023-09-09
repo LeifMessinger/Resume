@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--fake-opacity: 35%;
+		--fake-opacity: 20%;
 		--fake-background: #121212;
 	}
 }
