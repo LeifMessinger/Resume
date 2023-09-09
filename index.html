@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello!</title>
+		<meta name="description" content="description"/>
+		<meta name="author" content="author" />
+		<meta name="keywords" content="keywords" />
+		<link rel="stylesheet" href="./stylesheet.css" type="text/css" />
+		<script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			const hardcodedURL = "resume.html";
+
+			async function getHtmlDocument(url) { //Returns the document, so you still gotta get the body and the data element from it
+				console.assert(url);
+				if (!window.XMLHttpRequest) {
+					throw "This browser does not support XMLHttpRequest";
+				}
+
+				return new Promise((resolve, reject)=>{
+					const xhr = new window.XMLHttpRequest();
+					xhr.onreadystatechange = () => {
+						if (xhr.readyState === 4) {
+							done = true;
+							resolve(xhr.responseXML);
+						}
+					};
+					xhr.onabort = xhr.onerror = (e) => {
+						reject(e); //I don't think promises can reject after they've resolved, so this should be safe
+					};
+					xhr.open("GET", url);
+					xhr.responseType = "document";
+					xhr.timeout = 1000; // time in milliseconds
+					xhr.send();
+				});
+			}
+
+			const uselessTags = ["A", "I", "B", "S", "U",
+				"BR",
+				"H1", "H2", "H3",
+				"UL", "OL", "DL", "LI"];
+			function isUseless(element){
+				return uselessTags.includes(element.tagName.toUpperCase());
+			}
+
+			//Returns int
+			function largestDepth(element, depth = 0){ //Idk why, but depth has to be 1 
+				if(element.children.length == 0) return depth;
+
+				const depths = [];
+				for(let child of Array.from(element.children)){
+					if(isUseless(child)){
+						depths.push(
+							largestDepth(child, depth)
+						);
+					}else{
+						depths.push(
+							largestDepth(child, depth+1)
+						);
+					}
+				}
+
+				return Math.max.apply(null, depths);
+			}
+
+			//Gives you a color from a number.
+			function roundRobinColorSelector(colorIndex, maxColorValues = 4){
+				const colors = ["colorOne", "colorTwo", "colorThree", "colorFour"];
+				return colors[colorIndex % maxColorValues];
+			}
+
+			/* Tangent
+				number colorIndex
+				string tangentName
+			*/
+
+			//Complexity stacks is an array of stacks. Stacks are arrays of tangents.
+			function calculateComplexityStacks(element, complexityStack = [{colorIndex: 0, tangentName: "data"}]){ //Idk why, but depth has to be 1
+                                if(element.children.length == 0){
+					//Might want to return the complexity stack here
+				}
+
+				let neighborOffset = 0;
+				for(let child of Array.from(element.children)){
+					if(isUseless(child)){
+						calculateComplexityStacks(child, complexityStack);
+					}else{
+						const tangent = {
+							colorIndex: ((complexityStack[complexityStack.length - 1].colorIndex + 1 + (neighborOffset++)) % 4),
+							tangentName: child.getAttribute("tangentName") || child.tagName
+						};
+						child.complexityStack = complexityStack.concat([tangent]);
+						calculateComplexityStacks(child, child.complexityStack);
+					}
+				}
+			}
+			function complexityColor(element){ //Idk why, but depth has to be 1
+				for(let child of Array.from(element.children)){
+					if(!isUseless(child)){
+						const color = roundRobinColorSelector(child.complexityStack[child.complexityStack.length - 1].colorIndex, 4);
+						child.className = color;
+					}
+					
+					complexityColor(child);
+				}
+			}
+			
+			function complexityCallback(element, eventName, callbackFunction){ //Idk why, but depth has to be 1
+				for(let child of Array.from(element.children)){
+					if(!isUseless(child)){
+						child.addEventListener(eventName, callbackFunction, {capture: true});
+					}
+					
+					complexityCallback(child, eventName, callbackFunction);
+				}
+			}
+			function displayComplexityStack(){
+				const complexityStack = this.complexityStack;
+				let div = document.getElementById("ComplexityStack").firstChild;
+				div.innerHTML = "";
+				function writeTangentLine(tangent){
+					let smallerDiv = document.createElement("div");
+					smallerDiv.textContent = tangent.tangentName;
+					const color = roundRobinColorSelector(tangent.colorIndex, 4);
+					smallerDiv.className = color;
+					smallerDiv.appendChild(document.createElement("br"));
+
+					div.appendChild(smallerDiv);
+				}
+				for(let i = complexityStack.length - 1; i >= 0; --i){
+					if(!complexityStack[i]) console.log(this);
+					writeTangentLine(complexityStack[i]);
+				}
+			}
+			async function updateResume(){
+				//console.log("slider changed", this.value);
+				let recievedData = await getHtmlDocument(hardcodedURL);
+
+				const complexitySlider = this;
+				const dataBody = document.getElementById("DataBody");
+				async function pruneAtDepth(element, maxDepth){ //Please don't put 0 here for your first element, cause it'll delete that element somehow.
+					if(maxDepth >= 0){
+						for(let child of Array.from(element.children)){
+							if(isUseless(child)){
+								pruneAtDepth(child, maxDepth);
+							}else{
+								pruneAtDepth(child, maxDepth-1);
+							}
+						}
+					}else{
+						if(element.tagName != "BR") element.remove();
+						//element.setAttribute("bruh", true);
+						//console.log(element);
+					}
+				}
+				async function populateDataBody(maxDepth){
+					let prunedData = recievedData.cloneNode(true).firstChild.children[1].firstChild;
+					dataBody.innerHTML = "";
+					pruneAtDepth(prunedData, maxDepth);
+					calculateComplexityStacks(prunedData);
+					complexityCallback(prunedData, "mouseover", displayComplexityStack);
+					dataBody.appendChild(prunedData);
+					complexityColor(dataBody.firstChild);
+				}
+				populateDataBody(this.value);
+			}
+			function autorun(){
+				const slider = document.getElementById("ComplexitySlider");
+				updateResume.apply(slider);
+
+				getHtmlDocument(hardcodedURL).then((doc)=>{
+					slider.setAttribute("max", largestDepth(doc.firstChild.children[1].firstChild));
+				});
+			}
+			if (document.addEventListener){
+				document.addEventListener('DOMContentLoaded', autorun, false);
+			}else{
+				window.onload = autorun;
+			}
+		</script>
+		<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label> <br />
+		<div class="flexRow">
+			<div id="DataBody"> </div>
+			<div id="ComplexityStack"><div></div></div>
+		</div>
+		<div>Contact info: leifmessinger@gmail.com LeifMessinger@my.unt.edu</div>
+		<noscript>
+			FYI, you have javascript disabled, so this page won't work. :(
+		</noscript>
+	</body>
+</html>

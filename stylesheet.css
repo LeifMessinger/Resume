@@ -1,0 +1,62 @@
+:root {
+	color-scheme: light dark;
+	--mix-color-mode: srgb;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--fake-opacity: 35%;
+		--fake-background: #121212;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--fake-opacity: 35%;
+		--fake-background: #FFFFFF;
+	}
+}
+
+.colorOne {
+	background-color: color-mix(in var(--mix-color-mode), rgb(30, 144, 255) var(--fake-opacity), var(--fake-background));
+}
+.colorTwo {
+	background-color: color-mix(in var(--mix-color-mode), rgb(50, 205, 50) var(--fake-opacity), var(--fake-background));
+}
+.colorThree {
+	background-color: color-mix(in var(--mix-color-mode), rgb(255, 99, 71) var(--fake-opacity), var(--fake-background));
+}
+.colorFour {
+	background-color: color-mix(in var(--mix-color-mode), rgb(218, 112, 214) var(--fake-opacity), var(--fake-background));
+}
+
+#ComplexityStack {
+	flex: 0 0 200px;
+}
+
+#ComplexityStack > div {
+	position: sticky;
+	align-self: flex-start;
+	top: 0;
+	align-self: flex-start;
+
+	display: block;
+	width: 180px;
+	height: 180px;
+}
+
+#DataBody {
+	flex: 1 1;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: row;
+	overflow: auto;
+}
+
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+}
