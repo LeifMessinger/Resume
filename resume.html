@@ -5,8 +5,9 @@
 		<div tangentName="Education Types">
 			<h2>University of North Texas</h2>
 			<div tangentName="University of North Texas">
-				GPA: 3.651<br />
-				CompSci Classes Average GPA: 3.918
+				GPA: 3.705<br />
+				CompSci Classes Average GPA: 3.934<br />
+				2x President's List
 			</div>
 
 			<h2>Southlake Carroll High School</h2>
@@ -87,6 +88,20 @@
 							The webapp is now open to users to make their own examples through the orange link in the bottom right labeled "Generator".<br />
 							Since we don't have the backend working because of budget restraints, users can't login to submit them.<br />
 						</div>
+					</div>
+				</div>
+				<div tangentName="Attendance Taker">
+					<h3><a href="https://refactoringtutor.com/">Attendance Taker lead developer</a></h3>
+					<div tangentName="description">
+						Attendance Taker is a webapp that uses a rolling QR code to speed up attendance taking.<br />
+						A teacher starts the server on their computer, and navigates to the webpage using their local IP address.
+						Then, they type in a class code and the list of students in their class as a JSON array of strings.
+						<div tangentName="classCode">
+							The class code allows the teacher to rejoin the class in case they accidentally exit the page.
+						</div>
+						It brings them to a page with a QR code that changes every couple seconds. When they scan the QR code, it checks to make sure that it was scanned in the last couple seconds<div tangentName="encryption"> by including an encrypted string in the QR code with the time the QR code was made</div>.
+						If the JSON student's list is supplied, then the students can select their name from a list and the teacher can see who's absent from the class.
+						Then the teacher can use an included bookmarklet to run some javascript on an attendance assignment to grade the attendance.
 					</div>
 				</div>
 				<div tangentName="In/Out/Prefix Parser">
