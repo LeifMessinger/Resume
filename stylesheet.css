@@ -22,18 +22,18 @@
 		overflow: visible;
 	}
 	.linkPrompt {
-		visibility: hidden;
+		display: block;
 	}
 }
 @media screen {
 	.linkPrompt {
-                visibility: visible;
+		display: none;
         }
 }
 
 #flexHeader {
 	/* It only wants 10% of the height of the page. Nothing more, nothing less. */
-	flex: 0 0 5%;
+	flex: 0 0;
 }
 #flexWindow {
 	/* It's fine with growing or shrinking. */
@@ -50,8 +50,7 @@
 	}
 }
 #flexFooter {
-	/* It only wants 10% of the height of the page. Nothing more, nothing less. */
-	flex: 0 0 5%;
+	flex: 0 0 1.5em;
 }
 
 .colorOne {
@@ -84,4 +83,8 @@
 
 #DataBody {
 	flex: 1 1;
+}
+
+.tangent {
+	display: inline;
 }

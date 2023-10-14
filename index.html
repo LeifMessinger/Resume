@@ -100,7 +100,7 @@
 				for(let child of Array.from(element.children)){
 					if(!isUseless(child)){
 						const color = roundRobinColorSelector(child.complexityStack[child.complexityStack.length - 1].colorIndex, 4);
-						child.className = color;
+						child.classList.add(color);
 					}
 					
 					complexityColor(child);
@@ -181,7 +181,7 @@
 			}
 		</script>
 		<div id="flexHeader">
-			<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label> <br />
+			<label>Complexity slider <input id="ComplexitySlider" type="range" min="0" max="10" value="3" oninput="updateResume.apply(this)" onload="updateResume.apply(this)" /> </label>
 			<div class="linkPrompt"><a href="https://refactoringtutor.com/Resume/index.html">View the website to change the complexity slider! https://refactoringtutor.com/Resume/index.html</a></div>
 		</div>
 		<div id="flexWindow" class="flexRow">
@@ -189,7 +189,7 @@
 			<div id="ComplexityStack" class="flexSticky"><div></div></div>
 		</div>
 		<div id="flexFooter">
-			<div>Contact info: leifmessinger@gmail.com LeifMessinger@my.unt.edu</div>
+			<div>Contact info: <a href="mailto:leifmessinger@gmail.com?subject=Saw%20your%20resume">leifmessinger@gmail.com</a> <a href="mailto:LeifMessinger@my.unt.edu?subject=Saw%20your%20resume">LeifMessinger@my.unt.edu</div>
 			<div class="linkPrompt"><a href="https://refactoringtutor.com/Resume/index.html">View the website to change the complexity slider! https://refactoringtutor.com/Resume/index.html</a></div>
 		</div>
 		<noscript>
