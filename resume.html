@@ -1,76 +1,36 @@
 <div tangentName="resume">
 	<div tangentName="Name"><h1>Leif Messinger</h1></div>
-	<div tangentName="Education">
-		<h1>Education</h1>
-		<div tangentName="Education Types">
-			<h2>University of North Texas</h2>
-			<div tangentName="University of North Texas">
-				GPA: 3.705<br />
-				CompSci Classes Average GPA: 3.934<br />
-				2x President's List
-			</div>
-
-			<h2>Southlake Carroll High School</h2>
-			<div tangentName="Southlake Carroll High School">
-				Computer Science 1&2 Honors
-				Audio and Video Production(Broadcast Journalism)
-			</div>
-
-			<h2>Computer Science</h2>
-			<div tangentName="Computer Science Topics">
-				<h3>College level computer science topics</h3>
-				<ul>
-					<li>Data Structures & Objects</li>
-				<li>Algorithms</li>
-				<li>Operating systems</li>
-				<li>Game Development using object oriented design</li>
-				<li>Code analysis</li>
-				<li>Web crawling / Data mining</li>
-				<li>Cyber Security</li>
-				<li>Computer Networking</li>
-			</div>
-
-		</div>
-	</div>
-
-	<div tangentName="Skills">
-		<h1>Skills</h1>
-		<div tangentName="Skill Types">
-			<h2>Programming</h2>
-			<div tangentName="Programming">
-				Web Development
-				Javascript, CSS and HTML5
-				React.js, Vue, Svelte, Next.js
-				Java, C, C++, Python, Bash, Lua
-				IT Work (For profit and nonprofit)
-				PC building
-			</div>
-
-			<h2>Graphics</h2>
-			<div tangentName="Graphics">
-				Adobe Premiere Pro, After Effects, Blender
-				3D Printing, modeling in Blender
-			</div>
-
-			<h2>Hardware</h2>
-			<div tangentName="Hardware">
-					Ethernet Cable Crimping
-					PC Building
-					3D Printing
-					<h3>Device repair</h3>
-					<div tangentName="Repair">
-						Soldering
-						UPS Battery Refurbishing
-					</div>
-			</div>
-		</div>
-	</div>
-
 	<div tangentName="Experience">
 		<h1>Experience</h1>
 		<div tangentName="Experience Types">
+			<h2>Teaching</h2>
+			<div tangentName="Teaching">
+				<div tangentName="TA">
+					<h3>Teachers Assistant</div>
+					<div tangentName="description>
+						Current TA for UNT computer science and engineering.<br />
+						I created teaching materials for recitation sections. <br />
+						I would run students programs, and if they didn't work, I would fix them and give feedback on what I did to fix the code.
+					</div>
+				</div>
+			</div>
 			<h2>Programming</h2>
 			<div tangentName="Programming">
+				<div tangentName="Attendance Taker">
+					<h3><a href="https://github.com/LeifMessinger/AttendanceTaker">Attendance Taker lead developer</a></h3>
+					<div tangentName="description">
+						Attendance Taker is a teacher tool that uses a rolling QR code to speed up attendance taking.<br />
+						A teacher navigates to the webapp (hosted on the local network) and types in a class code and the list of students in their class.
+						<div tangentName="jsonClassList">
+							If the JSON student's list is supplied, then the students can select their name from a list and the teacher can see who's absent from the class.
+						</div>
+						<div tangentName="classCode">
+							The class code allows the teacher to rejoin the class in case they accidentally exit the page.
+						</div>
+						It brings them to a page with a QR code that changes every second. When they scan the QR code, it checks to make sure that it was scanned within the last couple seconds<div tangentName="encryption" class="tangent"> by including an encrypted string in the QR code with the time the QR code was made</div>.
+						Then the teacher can use an included bookmarklet to run some javascript on an attendance assignment to grade the attendance.
+					</div>
+				</div>
 				<div tangentName="Refactoring Tutor">
 					<h3><a href="https://refactoringtutor.com/">Refactoring Tutor lead developer</a></h3>
 					<div tangentName="description">
@@ -90,21 +50,14 @@
 						</div>
 					</div>
 				</div>
-				<div tangentName="Attendance Taker">
-					<h3><a href="https://github.com/LeifMessinger/AttendanceTaker">Attendance Taker lead developer</a></h3>
+				<div tangentName="Subtitle Overlay">
+					<h3><a href="https://github.com/LeifMessinger/SubtitleOverlay">Subtitle Overlay</a></h3>
 					<div tangentName="description">
-						Attendance Taker is a webapp that uses a rolling QR code to speed up attendance taking.<br />
-						A teacher starts the server on their computer, and navigates to the webpage using their local IP address.
-						Then, they type in a class code and the list of students in their class as a JSON array of strings.
-						<div tangentName="classCode">
-							The class code allows the teacher to rejoin the class in case they accidentally exit the page.
-						</div>
-						It brings them to a page with a QR code that changes every couple seconds. When they scan the QR code, it checks to make sure that it was scanned in the last couple seconds<div tangentName="encryption" class="tangent"> by including an encrypted string in the QR code with the time the QR code was made</div>.
-						If the JSON student's list is supplied, then the students can select their name from a list and the teacher can see who's absent from the class.
-						Then the teacher can use an included bookmarklet to run some javascript on an attendance assignment to grade the attendance.
+						Put customizable subtitles over any game (that you can hack the subtitles out of).<br />
+						Subtitle Overlay is a separate process utilizing a transparent window.
 					</div>
 				</div>
-				<div tangentName="In/Out/Prefix Parser">
+				<!--<div tangentName="In/Out/Prefix Parser">
 					<h3><a href="https://github.com/LeifMessinger/Leifix">In/out/prefix parser</a></h3>
 					<div tangentName="description">
 						This HTML5 JS webapp lets you paste in any equation, be it in infix, prefix, or postfix (or even a combination of any of them), and it will try to solve it. <br />
@@ -120,7 +73,7 @@
 						Using make and c preprocessor defines and macros, I turn C++ into readable english. Every line of code can be self documenting.
 						Don't believe it?<a href="https://github.com/LeifMessinger/CPP-English-Defines/blob/main/test.cpp">This compiles and runs!</a>
 					</div>
-				</div>
+				</div>-->
 
 				<h3>IT Work (For profit and nonprofit)</h3>
 			</div>
@@ -167,6 +120,72 @@
 			</div>
 		</div>
 	</div>
+	<div tangentName="Education">
+		<h1>Education</h1>
+		<div tangentName="Education Types">
+			<h2>University of North Texas</h2>
+			<div tangentName="University of North Texas">
+				Current PhD student and TA<br />
+				B.S. in Computer Science<br />
+				GPA: 3.736 Magna Cum Laude<br />
+				CompSci Classes Average GPA: 3.942<br />
+				2x President's List
+			</div>
+
+			<h2>Southlake Carroll High School</h2>
+			<div tangentName="Southlake Carroll High School">
+				Computer Science 1&2 Honors
+				Audio and Video Production(Broadcast Journalism)
+			</div>
+
+			<h2>Computer Science</h2>
+			<div tangentName="Computer Science Topics">
+				<h3>College level computer science topics</h3>
+				<ul>
+				<li>Data Structures & Objects</li>
+				<li>Algorithms</li>
+				<li>Operating systems</li>
+				<li>Game Development using object oriented design</li>
+				<li>Code analysis</li>
+				<li>Web crawling / Data mining</li>
+				<li>Cyber Security</li>
+				<li>Computer Networking</li>
+			</div>
+
+		</div>
+	</div>
+	<div tangentName="Skills">
+		<h1>Skills</h1>
+		<div tangentName="Skill Types">
+			<h2>Programming</h2>
+			<div tangentName="Programming">
+				Web Development
+				Javascript, CSS and HTML5
+				React.js, Vue, Svelte, Next.js
+				Java, C, C++, Python, Bash, Lua
+				IT Work (For profit and nonprofit)
+				PC building
+			</div>
+
+			<h2>Graphics</h2>
+			<div tangentName="Graphics">
+				Adobe Premiere Pro, After Effects, Blender
+				3D Printing, modeling in Blender
+			</div>
+
+			<h2>Hardware</h2>
+			<div tangentName="Hardware">
+					Ethernet Cable Crimping
+					PC Building
+					3D Printing
+					<h3>Device repair</h3>
+					<div tangentName="Repair">
+						Soldering
+						UPS Battery Refurbishing
+					</div>
+			</div>
+		</div>
+	</div>
 	<div tangentName="Awards">
 		<h1>Awards</h1>
 		<div tangentName="Programming">
@@ -175,7 +194,7 @@
 				4th place 2018 Frozen Eagle coding tournament. (North texas high school coding competition, out of ~9 groups of 3 people)
 			</div>
 		</div>
-		
+
 		<div tangentName="Graphics">
 			<h2>GraphicsAwards</h2>
 			<div tangentName="UIL State">
@@ -193,6 +212,5 @@
 				</dl>
 			</div>
 		</div>
-
 	</div>
 </div>
